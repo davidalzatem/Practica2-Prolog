@@ -45,26 +45,25 @@ vehicle(toyota, corolla, sedan, 22000, 2021).
 
 1. **Toyota SUV < 30 000**  
    ```prolog
-   ?- findall(Ref, (vehicle(toyota, Ref, suv, Price, _), Price < 30000), L).
-   % Esperado: L con las referencias Toyota tipo SUV bajo ese precio.
+   ?- vehiculos_por_mtp(toyota, suv, 30000, Caso1).
+   % Esperado: Caso1 con los vehículos Toyota tipo SUV cuyo precio sea < 30000.
    ```
 
 2. **Ford agrupado por tipo y año (bagof/3)**  
    ```prolog
-   ?- bagof((Type, Year, Ref), vehicle(ford, Ref, Type, _, Year), L).
-   % Esperado: L agrupando tuplas (Tipo, Año, Ref) de Ford.
+   ?- bagof(Ref, vehiculo(ford, Ref, Type, _, Year), Caso3).
+   % Esperado: Para cada combinación (Type, Year), Caso3 unifica con las referencias Ford de ese grupo.
    ```
 
-3. **Total de sedanes sin exceder 500 000**  
+3. **Reporte de sedanes con topes 100 000–500 000**  
    ```prolog
-   ?- findall(P, vehicle(_, _, sedan, P, _), L),
-      sum_list(L, Total),
-      Total =< 500000.
-   % Esperado: verificación booleana y/o Total calculado.
+   ?- generar_reporte(_, sedan, 100000, 500000, Caso3).
+   % Esperado: Caso3 unifica con el reporte (lista/total) cumpliendo los topes dados.
    ```
 
 ---
 
-## Enlaces del proyecto (completar)
+## Enlaces del proyecto
 
 - **Video demostrativo (YouTube)**: https://youtu.be/uWxeUPy6pq8 
+
